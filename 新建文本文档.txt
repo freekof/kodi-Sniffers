@@ -1,1 +1,0 @@
-Android WebView 嗅探 App 做一个独立 APK，里面有浏览器页面，拦截 .m3u8、.mp4、.mpd 等请求，然后把地址发送给 Kodi 播放。网址支持使用同局域网的手机输入。https://github.com/freekof/kodi这是我刚建的github仓库用来上传代码并创建工作流在GITHUB上生成APP.F:\manus\git\cmd\git.exe这是git程序
