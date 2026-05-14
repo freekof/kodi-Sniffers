@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="General">
+        <setting id="user_agent" type="text" label="User-Agent" default="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"/>
+        <setting id="nossl" type="bool" label="Ignore SSL Verification (Fix 1006 Error)" default="true"/>
+        <setting id="cookie_path" type="file" label="Cookie File Path (Optional)" default="" source="files"/>
+    </category>
+</settings>
