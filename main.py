@@ -101,6 +101,9 @@ def list_resolutions(url):
 
     xbmcplugin.endOfDirectory(handle)
 
+def play_direct_url(url):
+    xbmc.Player().play(url)
+
 def main():
     handle = int(sys.argv[1])
     url_args = urllib.parse.parse_qs(sys.argv[2][1:])
@@ -124,17 +127,20 @@ def main():
             list_resolutions(keyboard)
             
     elif mode == 'remote':
-        server_url = remote_server.start_server()
+        server_url = remote_server.start_server(history_provider_func=history_mgr.get_records)
         xbmcgui.Dialog().ok('手机远程输入', f'请在手机浏览器访问：\n{server_url}')
         dialog = xbmcgui.DialogProgress()
         dialog.create('等待提交', '请在手机上输入 URL 并点击发送...')
         try:
             while not dialog.iscanceled():
-                url = remote_server.get_received_url()
-                if url:
+                action = remote_server.get_received_action()
+                if action:
                     dialog.close()
                     remote_server.stop_server()
-                    list_resolutions(url)
+                    if action.get('type') == 'play':
+                        play_direct_url(action.get('url'))
+                    else:
+                        list_resolutions(action.get('url'))
                     return
                 time.sleep(1)
         finally:
